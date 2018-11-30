@@ -11,10 +11,10 @@
     'use strict';
     var chart = 'customBarChart';
     var mod = angular.module(chart, []);
-    mod.value('customBarChartOptions', { enabled: true });
-    mod.directive('customBarChartInitiated', ['$log', 'customBarChartOptions', function($log, customBarChartOptions) {
+    mod.value('customBarChart', { enabled: true });
+    mod.directive('customBarChart', ['$log', 'customBarChart', function($log, customBarChart) {
         return function() {
-            if (customBarChartOptions.enabled) {
+            if (customBarChart.enabled) {
                 $log.info('custom bar chart!', arguments);
             }
         }
