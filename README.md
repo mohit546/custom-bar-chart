@@ -1,7 +1,7 @@
 # custom-bar-chart
 basic chart library
 
-#Installation
+# Installation
 ## Install
 
     $ npm install https://github.com/mohit546/custom-bar-chart.git
