@@ -11,6 +11,7 @@ basic chart library
 ## Markup
 
 ```html
+<script src="node_modules/custom-bar-chart/custom-bar-chart.js"></script>
 <custom-bar-chart height="500" width="500" labels="label" values="data" legend="legend" gridscale="gridScale" seriesname="seriesName"></custom-bar-chart>
 ```
 
