@@ -31,6 +31,25 @@
                 myCanvas.height = scope.height;
                 var ctx = myCanvas.getContext('2d');
 
+                scope.$watch('legend', function (newValue, oldValue) {
+                    defaultVal.legend = newValue;
+                    var myBarchart = new Barchart(defaultVal);
+                    myBarchart.draw();
+                }, true);
+
+                scope.$watchCollection('labels', function (newValue, oldValue) {
+                    defaultVal.data.labels = newValue;
+                    var myBarchart = new Barchart(defaultVal);
+                    myBarchart.draw();
+                }, true);
+
+                scope.$watchCollection('values', function (newValue, oldValue) {
+                    defaultVal.data.values = newValue;
+                    var myBarchart = new Barchart(defaultVal);
+                    myBarchart.draw();
+                }, true);
+
+
                 var defaultVal = {
                     canvas: myCanvas,
                     seriesName: scope.seriesname,
@@ -85,6 +104,8 @@
                         cMarginSpace = cMargin + cSpace,
                         cMarginHeight = cMargin + cHeight,
                         bWidth = (cWidth / totalBars) - bMargin;
+
+                    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 
                     this.draw = function() {
@@ -155,13 +176,13 @@
                         this.ctx.restore();
 
                         barIndex = 0;
-                        if (!this.options.legend) return;
                         var legend = document.querySelector("legend[for='myCanvas']");
+                        if (legend.children.length) legend.innerHTML = '';
                         var ul = document.createElement("ul");
                         legend.append(ul);
                         for (let i = 0, l = this.options.data.labels.length; i < l; i++) {
                             var li = document.createElement("li"),
-                                categ = this.options.data.labels[i];
+                            categ = this.options.data.labels[i];
                             li.style.listStyle = "none";
                             li.style.borderLeft = "20px solid " + this.colors[barIndex % this.colors.length];
                             li.style.padding = "5px";
@@ -169,6 +190,8 @@
                             ul.append(li);
                             barIndex++;
                         }
+                        legend.style.display = "none";
+                        if (this.options.legend) legend.style.display = "block";
                     }
                 }
                 var myBarchart = new Barchart(defaultVal);
