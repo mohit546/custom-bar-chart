@@ -30,22 +30,26 @@
                 myCanvas.width = scope.width;
                 myCanvas.height = scope.height;
                 var ctx = myCanvas.getContext('2d');
+                var myBarchart = null;
 
                 scope.$watch('legend', function (newValue, oldValue) {
                     defaultVal.legend = newValue;
-                    var myBarchart = new Barchart(defaultVal);
+                    myBarchart = null;
+                    myBarchart = new Barchart(defaultVal);
                     myBarchart.draw();
                 }, true);
 
                 scope.$watchCollection('labels', function (newValue, oldValue) {
                     defaultVal.data.labels = newValue;
-                    var myBarchart = new Barchart(defaultVal);
+                    myBarchart = null;
+                    myBarchart = new Barchart(defaultVal);
                     myBarchart.draw();
                 }, true);
 
                 scope.$watchCollection('values', function (newValue, oldValue) {
                     defaultVal.data.values = newValue;
-                    var myBarchart = new Barchart(defaultVal);
+                    myBarchart = null;
+                    myBarchart = new Barchart(defaultVal);
                     myBarchart.draw();
                 }, true);
 
@@ -194,7 +198,7 @@
                         if (this.options.legend) legend.style.display = "block";
                     }
                 }
-                var myBarchart = new Barchart(defaultVal);
+                myBarchart = new Barchart(defaultVal);
                 myBarchart.draw();
             }
         };
